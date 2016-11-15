@@ -9,5 +9,7 @@ namespace DnDHelper.Models
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DnDHelperContext>());
         }        
         public DbSet<Character> Characters { get; set; }
+
+        public System.Data.Entity.DbSet<DnDHelper.Models.ViewModel.CharacterDetails> CharacterDetails { get; set; }
     }
 }

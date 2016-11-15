@@ -1,10 +1,8 @@
 ﻿using DnDHelper.Models;
 using DnDHelper.Models.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace DnDHelper.Controllers
 {
@@ -66,39 +64,49 @@ namespace DnDHelper.Controllers
 
         // POST: Character/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Character character)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                try
+                {
+                    _db.Entry(character).State = EntityState.Modified;
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View(character);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return HttpNotFound();
         }
 
         // GET: Character/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var character = _db.Characters.Find(id);            
+            if (character == null)
+                return HttpNotFound();
+            var characterDetails = new CharacterDetails(character);
+            return View(characterDetails);
         }
 
         // POST: Character/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id,CharacterDetails charDetails)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                var character = _db.Characters.Find(id);
+                if (character != null)
+                    _db.Entry(character).State = EntityState.Deleted;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
 

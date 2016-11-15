@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace DnDHelper.Models
 {
     public class Character
@@ -12,13 +7,14 @@ namespace DnDHelper.Models
         [Display(Name = "Character name")]
         [Required]
         public string CharacterName { get; set; }
-        [Range(0,20,ErrorMessage = "Character level cannot be above 20")]
+        [Range(1,20,ErrorMessage = "Character level must be between 1 and 20")]
         [Required]
         public int Level { get; set; }
         [Required]
         public int Race { get; set; }
         [Required]
         public int Class { get; set; }
+        
 
         public Character(string charName,int level,int charClass,int race)
         {

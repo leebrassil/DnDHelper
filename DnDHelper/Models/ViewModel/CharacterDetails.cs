@@ -23,5 +23,10 @@ namespace DnDHelper.Models.ViewModel
             Race = ((Enums.Race)character.Race).ToString();
             Class = ((Enums.Race)character.Class).ToString();
         }
+
+        public CharacterDetails()
+        {
+
+        }
     }
 }
