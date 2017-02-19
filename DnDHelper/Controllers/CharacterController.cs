@@ -17,7 +17,7 @@ namespace DnDHelper.Controllers
         }
 
         // GET: Character/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id = 1)
         {
             var character = _db.Characters.Find(id);
             if(character != null)
@@ -44,9 +44,9 @@ namespace DnDHelper.Controllers
                     return RedirectToAction("Details", new { id = character.Id });
 
                 }
-                catch
+                catch(System.Exception e)
                 {
-                    return View();
+                    return new HttpStatusCodeResult(500);
                 }
             }
             return View(character);       

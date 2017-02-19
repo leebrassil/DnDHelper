@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DnDHelper.Models.ViewModel
 {
@@ -14,6 +10,8 @@ namespace DnDHelper.Models.ViewModel
         public int Level { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }
+        [Display(Name = "Proficiency bonus")]
+        public int ProficiencyBonus { get; set; }
 
         public CharacterDetails(Character character)
         {
@@ -22,6 +20,7 @@ namespace DnDHelper.Models.ViewModel
             Level = character.Level;
             Race = ((Enums.Race)character.Race).ToString();
             Class = ((Enums.Race)character.Class).ToString();
+            ProficiencyBonus = character.ProficiencyBonus;
         }
 
         public CharacterDetails()
