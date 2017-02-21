@@ -3,16 +3,20 @@ using DnDHelper.Models.ViewModel;
 using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+using System;
 
 namespace DnDHelper.Controllers
 {
+    [Authorize]
     public class CharacterController : Controller
     {
         DnDHelperContext _db = new DnDHelperContext();
         // GET: Character
         public ActionResult Index()
         {
-            var model = _db.Characters.ToList();
+            var userId = new Guid(User.Identity.GetUserId());
+            var model = _db.Characters.Where(c => c.UserId == userId).ToList();
             return View(model);
         }
 
@@ -21,7 +25,7 @@ namespace DnDHelper.Controllers
         {
             var character = _db.Characters.Find(id);
             if(character != null)
-                return View(new CharacterDetails(character));
+                return View(character);
             return RedirectToAction("Index");
         }
 
@@ -35,6 +39,7 @@ namespace DnDHelper.Controllers
         [HttpPost]
         public ActionResult Create(Character character)
         {
+            character.UserId = new Guid(User.Identity.GetUserId());
             if(ModelState.IsValid)
             {
                 try

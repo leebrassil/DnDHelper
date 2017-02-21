@@ -9,28 +9,28 @@ namespace DnDHelperTest
         [TestMethod]
         public void Test10Stat()
         {
-            var modifier = BaseStats.GetModifier(10);
+            var modifier = Character.GetModifier(10);
             Assert.AreEqual(modifier, 0);
         }
 
         [TestMethod]
         public void Test11Stat()
         {
-            var modifier = BaseStats.GetModifier(11);
+            var modifier = Character.GetModifier(11);
             Assert.AreEqual(modifier, 0);
         }
 
         [TestMethod]
         public void TestPositiveStat()
         {
-            var modifier = BaseStats.GetModifier(17);
+            var modifier = Character.GetModifier(17);
             Assert.AreEqual(modifier, 3);
         }
 
         [TestMethod]
         public void TestNegativeStat()
         {
-            var modifier = BaseStats.GetModifier(8);
+            var modifier = Character.GetModifier(8);
             Assert.AreEqual(modifier, -1);
         }
     }

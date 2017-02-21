@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #e5e5d9;
+    background-color: #D6CCA9;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -30,4 +30,18 @@ textarea {
     height: 100px;
     width: 60%;    
     
+}
+
+#stat-block input, #characterLevel{
+    width: 75px;
+} 
+
+#stat-table table,#stat-table tr,#stat-table tr,#stat-table th,#stat-table td{
+    border: 1px solid black;
+}
+
+#stat-table{
+    text-align: center;
+    left:auto;
+    right:auto;
 }

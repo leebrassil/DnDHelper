@@ -1,4 +1,4 @@
-﻿@model DnDHelper.Models.ViewModel.CharacterDetails
+﻿@model DnDHelper.Models.Character
 
 @{
     ViewBag.Title = "Details";
@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Race)
+            @((DnDHelper.Enums.Race)int.Parse(Html.DisplayFor(model => model.Race).ToString()))
         </dd>
 
         <dt>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Class)
+            @((DnDHelper.Enums.Class)int.Parse(Html.DisplayFor(model => model.Class).ToString()))
         </dd>
 
         <dt>
@@ -48,9 +48,52 @@
 
         <dd>
             +@Html.DisplayFor(model =>  model.ProficiencyBonus)
-        </dd>
-
+        </dd>    
     </dl>
+    <div id="stat-table">
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Strength)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dexterity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Constitution)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Intelligence)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Wisdom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Charisma)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Strength)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Dexterity)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Constitution)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Intelligence)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Wisdom)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Charisma)
+                </td>
+            </tr>
+        </table>
+    </div>    
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
