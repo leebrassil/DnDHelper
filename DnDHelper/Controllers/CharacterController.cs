@@ -71,6 +71,7 @@ namespace DnDHelper.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Character character)
         {
+            character.UserId = new Guid(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
                 try
